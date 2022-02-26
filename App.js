@@ -1,20 +1,39 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Icon } from 'react-native-elements';
+import {
+  SmileOutlined,
+} from '@ant-design/icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import Floofs from './screens/Floofs.js';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator
+        tabBarOptions={{
+          showLabel: false,
+          color: '#5f9ea0',
+          size: '30px',
+          activeTintColor: '#173245',
+        }}
+      >
+        <Tab.Screen
+          name='Floofs'
+          component={Floofs}
+          options={{
+            headerShown: false,
+            tabBarIcon: () => (
+              <SmileOutlined style={{ size: '30px', color: '5f9ea0' }} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+      <StatusBar style='auto' />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
